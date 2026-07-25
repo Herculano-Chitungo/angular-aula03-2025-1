@@ -14,26 +14,14 @@
     gutterSize="1em"
   >
 
-    <mat-grid-tile
-      [style.backgroundColor]="'#00000010'"
-      [style.borderRadius]="'.5em'"
-    >
-      Célula 1
-    </mat-grid-tile>
-
-    <mat-grid-tile
-      [style.backgroundColor]="'#00000010'"
-      [style.borderRadius]="'.5em'"
-    >
-      Célula 2
-    </mat-grid-tile>
-
-    <mat-grid-tile
-      [style.backgroundColor]="'#00000010'"
-      [style.borderRadius]="'.5em'"
-    >
-      Célula 3
-    </mat-grid-tile>
+    @for (favorito of favoritos$ | async; track $index) {
+      <mat-grid-tile
+        [style.backgroundColor]="'#00000010'"
+        [style.borderRadius]="'.5em'"
+      >
+        {{ favorito.titulo }}
+      </mat-grid-tile>
+    }
 
   </mat-grid-list>
 

@@ -6,6 +6,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { map } from 'rxjs';
 
+import { FavoritoService } from '../../services/favorito/favorito.service';
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -28,5 +30,8 @@ export class HomeComponent {
   public duasColunas$ = this.breakpointObserver.observe([
     Breakpoints.Medium,
   ]).pipe(map(state => state.matches));
+
+  private favoritoService = inject(FavoritoService);
+  public favoritos$ = this.favoritoService.getAll();
 
 }
