@@ -20,3 +20,14 @@ favoritoRouter.get('/', async (req: Request, res: Response, next: NextFunction) 
   ).find().toArray();
   res.json(favoritos);
 });
+
+favoritoRouter.get('/:_id', async (req: Request, res: Response, next: NextFunction) => {
+  const _id: number = +req.params._id;
+  const favorito: (IFavorito | null) = await getCollection<IFavorito>(
+    req.app,
+    'favoritos',
+  ).findOne({
+    _id: _id,
+  });
+  res.json(favorito);
+});

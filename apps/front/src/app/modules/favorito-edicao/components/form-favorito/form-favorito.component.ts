@@ -1,4 +1,9 @@
-import { Component, inject, Input } from '@angular/core';
+import {
+  Component,
+  inject,
+  Input,
+  OnInit,
+} from '@angular/core';
 
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -7,6 +12,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 
+import { FavoritoEdicaoService } from '../../services/favorito-edicao.service';
 
 @Component({
   selector: 'app-form-favorito',
@@ -31,11 +37,22 @@ export class FormFavoritoComponent {
 
   private fb = inject(FormBuilder);
   formGroup = this.fb.group({
-    titulo:    [null, Validators.required],
-    descricao: [null, Validators.required],
-    imagem:    [null, Validators.required],
-    url:       [null, Validators.required],
+    _id:       [0],
+    titulo:    ['', Validators.required],
+    descricao: ['', Validators.required],
+    imagem:    ['', Validators.required],
+    url:       ['', Validators.required],
   });
+
+  private favoritoEdicaoService = inject(FavoritoEdicaoService);
+
+  public ngOnInit(): void {
+    if (this.id) {
+      this.favoritoEdicaoService.get(+this.id).subscribe(iFavorito => {
+        this.formGroup.setValue(iFavorito);
+      });
+    }
+  }
 
   onSubmit(): void {
     alert('Thanks!');
