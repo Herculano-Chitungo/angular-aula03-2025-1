@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+
 import { map } from 'rxjs';
 
 import { FavoritoService } from '../../services/favorito/favorito.service';
@@ -14,6 +17,8 @@ import { FavoritoService } from '../../services/favorito/favorito.service';
   imports: [
     CommonModule,
     MatGridListModule,
+    MatCardModule,
+    MatButtonModule,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',

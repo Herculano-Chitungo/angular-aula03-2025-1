@@ -10,7 +10,6 @@
 
   <mat-grid-list
     [cols]="(umaColuna$ | async) ? 1 : (duasColunas$ | async) ? 2 : 3"
-    rowHeight="10em"
     gutterSize="1em"
   >
 
@@ -19,7 +18,28 @@
         [style.backgroundColor]="'#00000010'"
         [style.borderRadius]="'.5em'"
       >
-        {{ favorito.titulo }}
+        <mat-card class="favorito-card">
+          <div style="text-align: center;">
+            <img
+              mat-card-image
+              src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+              alt="Photo of a Shiba Inu"
+              style="width: 100%;"
+            >
+          </div>
+          <mat-card-content>
+            <mat-card-title>
+              {{ favorito.titulo }}
+            </mat-card-title>
+            <p>
+              {{ favorito.descricao }}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>LIKE</button>
+            <button mat-button>SHARE</button>
+          </mat-card-actions>
+        </mat-card>
       </mat-grid-tile>
     }
 
