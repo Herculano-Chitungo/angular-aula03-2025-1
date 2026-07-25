@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
@@ -16,6 +17,7 @@ import { FavoritoService } from '../../services/favorito/favorito.service';
   standalone: true,
   imports: [
     CommonModule,
+    RouterModule,
     MatGridListModule,
     MatCardModule,
     MatButtonModule,
