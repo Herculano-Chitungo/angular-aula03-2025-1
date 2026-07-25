@@ -11,6 +11,8 @@ import { MongoClient } from 'mongodb';
 
 import cors from 'cors';
 
+import { json } from 'body-parser';
+
 import { favoritoRouter } from './routes/favorito.router';
 
 MongoClient.connect(mongodbUri).then((client: MongoClient) => {
@@ -24,6 +26,9 @@ const app = express();
 
 // Usar CORS antes dos middlewares de roteamento:
 app.use(cors());
+
+// Processar corpo da requisição HTTP antes das rotas que necessitam desse corpo:
+app.use(json());
 
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
