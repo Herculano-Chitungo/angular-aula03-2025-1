@@ -13,6 +13,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 
 import { FavoritoEdicaoService } from '../../services/favorito-edicao.service';
+import { IFavorito } from '@nx-monorepo/comum';
 
 @Component({
   selector: 'app-form-favorito',
@@ -55,6 +56,15 @@ export class FormFavoritoComponent {
   }
 
   onSubmit(): void {
-    alert('Thanks!');
+    console.log('Vamos salvar');
+    console.log('Vamos salvar', this.formGroup.value);
+    const iFavorito = <IFavorito>this.formGroup.value;
+    if (this.id) {
+      this.favoritoEdicaoService.put(iFavorito).subscribe(() => {
+        alert("Salvei!");
+      });
+    } else {
+      alert("Este é um novo registro... implemente a API de POST!");
+    }
   }
 }
