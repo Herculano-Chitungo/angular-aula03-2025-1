@@ -11,6 +11,8 @@ import { MongoClient } from 'mongodb';
 
 import cors from 'cors';
 
+import { favoritoRouter } from './routes/favorito.router';
+
 MongoClient.connect(mongodbUri).then((client: MongoClient) => {
   app.locals.db = client.db('app-favoritos');
   console.log(`Conectado ao MongoDB.`);
@@ -28,6 +30,8 @@ app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.get('/api', (req, res) => {
   res.send({ message: 'Welcome to api!' });
 });
+
+app.use('/api/favorito', favoritoRouter);
 
 const port = process.env.PORT || 3333;
 const server = app.listen(port, () => {
